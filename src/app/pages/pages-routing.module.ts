@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {PagesComponent} from "./pages.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {TableComponent} from "./table/table.component";
+import {SearchTagComponent} from "./search-tag/search-tag.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'table',
         component: TableComponent
+      },
+      {
+        path: 'search',
+        component: SearchTagComponent
       }
     ]
   }

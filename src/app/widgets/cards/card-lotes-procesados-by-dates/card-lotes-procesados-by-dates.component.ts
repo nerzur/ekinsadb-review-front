@@ -19,9 +19,13 @@ export class CardLotesProcesadosByDatesComponent implements OnInit {
     this.configService.getConfig().subscribe((data: any) => {
       this.service.getCountLotesProcesados(new Date(data.lastEkinsaSoftwareInstallDate), new Date()).subscribe(data => {
         this.cantLotesProcesados = <string>data;
+      }, error => {
+        console.log(error);
       });
       this.service.getCountLotesConErrores(new Date(data.lastEkinsaSoftwareInstallDate), new Date()).subscribe(data=>{
         this.cantLotesConErrores = <string>data;
+      }, error => {
+        console.log(error);
       });
     });
   }

@@ -19,13 +19,19 @@ export class CardPesajesLineaTotalComponent implements OnInit{
   ngOnInit(): void {
     this.service.getDbEntries().subscribe(data=>{
       this.cantPesadas = data;
+    }, error => {
+      console.log(error);
     });
     this.service.getDbEntriesToday().subscribe(data=>{
       this.cantPesadasToday = data;
+    }, error => {
+      console.log(error);
     });
     this.configService.getConfig().subscribe((data: any) => {
       this.service.getPalletsProcessedInRangeDates(new Date(data.lastEkinsaSoftwareInstallDate)).subscribe(data => {
         this.cantPesadasLastVersion = <string>data;
+      }, error => {
+        console.log(error);
       });
     });
   }

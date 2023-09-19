@@ -9,7 +9,6 @@ import {BaseChartDirective} from "ng2-charts";
 })
 export class ChartComponent {
   ngOnInit() {
-    console.log(this.chart)
     this.gradient?.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
     this.gradient?.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
     this.gradient?.addColorStop(0, 'rgba(94, 114, 228, 0)');

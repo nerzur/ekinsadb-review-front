@@ -22,6 +22,8 @@ import { CardErrorsInTagByDatesComponent } from './cards/card-errors-in-tag-by-d
 import {ConfigService} from "./services/config.service";
 import {DividerModule} from "primeng/divider";
 import {DialogModule} from "primeng/dialog";
+import { SearchTagTableComponent } from './search-tag-table/search-tag-table.component';
+import {InputTextModule} from "primeng/inputtext";
 
 
 
@@ -38,6 +40,7 @@ import {DialogModule} from "primeng/dialog";
     TableEkinDataErrorsReviewPrimeNgComponent,
     CardLotesProcesadosByDatesComponent,
     CardErrorsInTagByDatesComponent,
+    SearchTagTableComponent,
   ],
   imports: [
     CommonModule,
@@ -64,7 +67,8 @@ import {DialogModule} from "primeng/dialog";
     TableEkinDataErrorsReviewPrimeNgComponent,
     CardPesajesLineaTotalComponent,
     CardLotesProcesadosByDatesComponent,
-    CardErrorsInTagByDatesComponent
+    CardErrorsInTagByDatesComponent,
+    SearchTagTableComponent
   ],
   providers: [
     EkinDbReviewApiRestService,

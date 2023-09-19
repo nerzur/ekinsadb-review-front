@@ -21,7 +21,7 @@ export class TableEkinDataErrorsReviewPrimeNgComponent implements OnInit {
   dialogVisible: boolean = false;
 
   tagDialogHeader = "";
-  dialogEntries : EK_PesajeLinea[] = [];
+  dialogEntries: EK_PesajeLinea[] = [];
   loadingDialog: boolean = false;
 
 
@@ -85,10 +85,11 @@ export class TableEkinDataErrorsReviewPrimeNgComponent implements OnInit {
     this.tagDialogHeader = tag;
     this.dialogVisible = true;
     this.loadingDialog = true;
-    this.service.getRegistriesByTag(tag).subscribe(data=>{
-      console.log(data);
+    this.service.getRegistriesByTag(tag).subscribe(data => {
       this.dialogEntries = data;
       this.loadingDialog = false;
+    }, error => {
+      console.log(error);
     })
 
   }

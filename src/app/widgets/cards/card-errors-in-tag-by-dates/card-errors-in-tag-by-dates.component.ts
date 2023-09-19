@@ -21,6 +21,8 @@ export class CardErrorsInTagByDatesComponent implements OnInit {
     this.configService.getConfig().subscribe((data: any) => {
       this.service.getCountErrorsInTag(new Date(data.lastEkinsaSoftwareInstallDate), new Date()).subscribe(data => {
         this.cantErrorTag = <string>data;
+      }, error => {
+        console.log(error);
       });
     });
     let tempDate = new Date();
@@ -28,6 +30,8 @@ export class CardErrorsInTagByDatesComponent implements OnInit {
     this.service.getCountErrorsInTag(new Date('2023-08-24'), tempDate).subscribe(data => {
       this.cantNewErrors = ((data - 5 == 0) ? '' : '+') + ((<number>data) - 5);
       this.errorType = (data - 5 == 0) ? 'success' : 'danger';
+    }, error => {
+      console.log(error);
     });
   }
 
