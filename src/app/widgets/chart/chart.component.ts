@@ -1,6 +1,8 @@
 import {Component, ViewChild} from '@angular/core';
 import {ChartConfiguration, ChartType} from "chart.js";
 import {BaseChartDirective} from "ng2-charts";
+import {EkinDbReviewApiRestService} from "../services/ekin-db-review-api-rest.service";
+import {CountEntriesByDates} from "../entity/countEntriesByDates";
 
 @Component({
   selector: 'app-chart',
@@ -8,25 +10,56 @@ import {BaseChartDirective} from "ng2-charts";
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent {
-  ngOnInit() {
-    this.gradient?.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-    this.gradient?.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-    this.gradient?.addColorStop(0, 'rgba(94, 114, 228, 0)');
+
+
+  constructor(private service: EkinDbReviewApiRestService) {
   }
 
-  gradient?: CanvasGradient = this.chart?.chart?.ctx.createLinearGradient(0, 230, 0, 50);
+  ngOnInit() {
+    // this.gradient?.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+    // this.gradient?.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+    // this.gradient?.addColorStop(0, 'rgba(94, 114, 228, 0)');
+    this.service.CountEntriesByDates().subscribe((data: CountEntriesByDates[]) => {
+      let labels: string[] = [];
+      let values: number[] = [];
+      let month: string[] = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+
+      for (let datum of data) {
+        labels.push(month[datum.monthEntries - 1] + '-' + datum.yearEntries);
+        values.push(datum.cantidadRegistros);
+      }
+      this.lineChartData = {
+        labels: labels,
+        datasets: [{
+          label: "Tags procesados por Mes",
+          tension: 0.4,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#5e72e4",
+          backgroundColor: "#91a4ee",
+          fill: true,
+          data: values,
+          maxBarThickness: 6
+        }],
+      };
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  // gradient?: CanvasGradient = this.chart?.chart?.ctx.createLinearGradient(0, 230, 0, 50);
 
   public lineChartData: ChartConfiguration['data'] = {
-    labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: [""],
     datasets: [{
-      label: "Mobile apps",
+      label: "Loading",
       tension: 0.4,
       borderWidth: 0,
       pointRadius: 0,
       borderColor: "#5e72e4",
       backgroundColor: "#91a4ee",
       fill: true,
-      data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+      data: [0],
       maxBarThickness: 6
     }],
   };

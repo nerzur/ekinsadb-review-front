@@ -7,22 +7,17 @@ import {ConfigService} from "../../services/config.service";
   templateUrl: './card-pesajes-linea-total.component.html',
   styleUrls: ['./card-pesajes-linea-total.component.css']
 })
-export class CardPesajesLineaTotalComponent implements OnInit{
+export class CardPesajesLineaTotalComponent implements OnInit {
 
-  cantPesadas  = "";
-  cantPesadasToday  = "";
-  cantPesadasLastVersion = "";
+  cantPesadasToday = "LOADING";
+  cantPesadasLastVersion = "LOADING";
+  cantPesadasLastRevision = "LOADING";
 
   constructor(private service: EkinDbReviewApiRestService, private configService: ConfigService) {
   }
 
   ngOnInit(): void {
-    this.service.getDbEntries().subscribe(data=>{
-      this.cantPesadas = data;
-    }, error => {
-      console.log(error);
-    });
-    this.service.getDbEntriesToday().subscribe(data=>{
+    this.service.getDbEntriesToday().subscribe(data => {
       this.cantPesadasToday = data;
     }, error => {
       console.log(error);
@@ -30,6 +25,11 @@ export class CardPesajesLineaTotalComponent implements OnInit{
     this.configService.getConfig().subscribe((data: any) => {
       this.service.getPalletsProcessedInRangeDates(new Date(data.lastEkinsaSoftwareInstallDate)).subscribe(data => {
         this.cantPesadasLastVersion = <string>data;
+      }, error => {
+        console.log(error);
+      });
+      this.service.getPalletsProcessedInRangeDates(new Date(data.initLastEkinsaSoftwareRevisionDate)).subscribe(data => {
+        this.cantPesadasLastRevision = <string>data;
       }, error => {
         console.log(error);
       });

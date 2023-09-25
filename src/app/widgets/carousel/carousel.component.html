@@ -3,7 +3,7 @@
     <ngb-carousel *ngIf="data">
       <ng-template ngbSlide *ngFor="let image of data">
         <div id="here" class="carousel-inner border-radius-lg h-100">
-          <img src="/assets/img/{{image.image}}"/>
+          <img src="/assets/img/{{image.image}}" height="470px"/>
           <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
             <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
               <i class="ni {{image.icon}} text-dark opacity-10"></i>

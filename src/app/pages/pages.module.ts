@@ -8,6 +8,7 @@ import { TableComponent } from './table/table.component';
 import {WidgetsModule} from "../widgets/widgets.module";
 import {NgbAlert} from "@ng-bootstrap/ng-bootstrap";
 import { SearchTagComponent } from './search-tag/search-tag.component';
+import {MessagesModule} from "primeng/messages";
 
 
 @NgModule({
@@ -17,11 +18,12 @@ import { SearchTagComponent } from './search-tag/search-tag.component';
     TableComponent,
     SearchTagComponent
   ],
-  imports: [
-    WidgetsModule,
-    CommonModule,
-    PagesRoutingModule,
-    NgbAlert
-  ]
+    imports: [
+        WidgetsModule,
+        CommonModule,
+        PagesRoutingModule,
+        NgbAlert,
+        MessagesModule
+    ]
 })
 export class PagesModule { }

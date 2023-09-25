@@ -10,8 +10,8 @@ import {ConfigService} from "../../services/config.service";
 })
 export class CardErrorsInTagByDatesComponent implements OnInit {
 
-  cantErrorTag = "";
-  cantNewErrors = "";
+  cantErrorTag = "LOADING";
+  cantNewErrors = "LOADING";
   errorType = "";
 
   constructor(private service: EkinDbReviewApiRestService, private configService: ConfigService) {

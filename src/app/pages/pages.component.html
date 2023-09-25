@@ -7,9 +7,9 @@
 <main class="main-content position-relative border-radius-lg ">
 
   <app-navbar></app-navbar>
-    <ngb-alert style="margin-left: 10px; margin-right: 10px" type="warning" [dismissible]="false">
-      <strong>Warning!</strong> This page is under develop. Last Ekinsa's software version {{lastEkinsaSoftwareVersion}} of {{lastEkinsaSoftwareInstallDate}}.
-    </ngb-alert>
+  <div style="padding-right: 10px; padding-left: 10px">
+    <p-messages [(value)]="messages" [enableService]="false" [closable]="true"></p-messages>
+  </div>
 
   <router-outlet></router-outlet>
   <app-footer></app-footer>

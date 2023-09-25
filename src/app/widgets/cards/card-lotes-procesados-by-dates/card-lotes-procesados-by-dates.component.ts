@@ -9,8 +9,8 @@ import {ConfigService} from "../../services/config.service";
 })
 export class CardLotesProcesadosByDatesComponent implements OnInit {
 
-  cantLotesProcesados = "";
-  cantLotesConErrores = "LOADING";
+  cantLotesProcesados = "LOADING";
+  cantLotesProcesadosUltimaRevision = "LOADING";
 
   constructor(private service: EkinDbReviewApiRestService, private configService: ConfigService) {
   }
@@ -22,16 +22,12 @@ export class CardLotesProcesadosByDatesComponent implements OnInit {
       }, error => {
         console.log(error);
       });
-      this.service.getCountLotesConErrores(new Date(data.lastEkinsaSoftwareInstallDate), new Date()).subscribe(data=>{
-        this.cantLotesConErrores = <string>data;
+      this.service.getCountLotesProcesados(new Date(data.initLastEkinsaSoftwareRevisionDate), new Date()).subscribe(data => {
+        this.cantLotesProcesadosUltimaRevision = <string>data;
       }, error => {
         console.log(error);
       });
     });
-  }
-
-  getLotesConErrores(){
-
   }
 
   ngOnInit(): void {

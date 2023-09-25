@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {DatePipe} from "@angular/common";
+import {CountEntriesByDates} from "../entity/countEntriesByDates";
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,10 @@ export class EkinDbReviewApiRestService {
 
   dateFormat: string = 'yyyy-MM-dd';
   /**Without docker**/
-  // apiRestDirection : string = "http://localhost:8091";
+  apiRestDirection : string = "http://localhost:8091";
 
   /**With docker**/
-  apiRestDirection: string = "http://ekinsadb-review:8091";
+  // apiRestDirection: string = "http://10.10.17.0:8091";
 
   constructor(private http: HttpClient, private datePipe: DatePipe) {
   }
@@ -58,6 +59,10 @@ export class EkinDbReviewApiRestService {
 
   getRegistriesByTag(tag: string): Observable<any> {
     return this.http.get(this.apiRestDirection + "/pesajesLinea/findEkPesajesLineaByTag?tag=" + tag);
+  }
+
+  CountEntriesByDates(): Observable<any> {
+    return this.http.get(this.apiRestDirection + "/pesajesLinea/countEntriesByDates");
   }
 
   convertDate(date: Date, format: string): string {

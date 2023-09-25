@@ -4,6 +4,7 @@
 <div class="card-body px-0 pt-0 pb-2" style="margin-left: 10px; margin-right: 10px; padding-top: 20px">
 
   <form>
+    <p-toast></p-toast>
     <div class="row">
       <div class="row" style="margin-left: 20px">
         <b>Rango de fechas*</b>
@@ -33,6 +34,7 @@
 
   <div class="table-responsive p-0">
     <p-table
+      #dt
       [value]="entriesList"
       [tableStyle]="{ 'min-width': '50rem' }"
       [paginator]="true"
@@ -42,6 +44,14 @@
       [loading]="loading"
       [rowsPerPageOptions]="[10, 25, 50]"
       class="table align-items-center mb-0">
+
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="btn btn-success" pTooltip="XLS" tooltipPosition="bottom"></button>
+          <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="btn btn-success" pTooltip="PDF" tooltipPosition="bottom" style="margin-left: 10px"></button>
+        </div>
+      </ng-template>
+
       <ng-template pTemplate="header">
         <tr>
           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tag</th>
@@ -49,13 +59,13 @@
           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Lote</th>
           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Peso</th>
           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Zona</th>
-          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Errors</th>
+<!--          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Errors</th>-->
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-entries>
         <tr>
           <td colspan="6" class="align-middle text-center text-sm">
-            <strong class="text-bold text-center text-md-center">{{entries.tag}} - {{entries.countEntries}}
+            <strong class="text-bold text-center text-md-center">{{entries.tag}} <i style="margin-left: 5px; margin-right: 10px" pBadge severity="danger" value="{{missingZone(entries.entriesList)}}"></i> - {{entries.countEntries}}
               entradas</strong>
           </td>
         </tr>
@@ -76,9 +86,9 @@
           <td class="align-middle text-center text-sm">
             <p class="text-xs text-secondary mb-0">{{entry.zone}}</p>
           </td>
-          <td class="align-middle text-center text-sm">
-            <span class="badge badge-sm bg-gradient-danger">Falta entrada de zona {{missingZone(entry.zone)}}</span>
-          </td>
+<!--          <td class="align-middle text-center text-sm">-->
+<!--            <span class="badge badge-sm bg-gradient-danger">Falta entrada de zona {{missingZone(entry.zone)}}</span>-->
+<!--          </td>-->
         </tr>
       </ng-template>
     </p-table>

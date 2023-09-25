@@ -11,20 +11,20 @@ export class CarouselComponent {
     {
       image: "carousel-1.jpg",
       icon: "ni-camera-compact",
-      header: "Get started with Argon",
-      subtitle: "There’s nothing I really wanted to do in life that I wasn’t able to get good at."
+      header: "Havana Club Internacional",
+      subtitle: "Produciendo el mejor ron para usted."
     }
     , {
       image: "carousel-2.jpg",
       icon: "ni-bulb-61",
-      header: "Faster way to create web pages",
-      subtitle: "That’s my skill. I’m not really specifically talented at anything except for the ability to learn."
+      header: "Edición limitada",
+      subtitle: "Lo mejor de lo mejor."
     }
     , {
       image: "carousel-3.jpg",
       icon: "ni-trophy",
-      header: "Share with us your design tips!",
-      subtitle: "Don’t be afraid to be wrong because you can’t learn anything from a compliment."
+      header: "Máximo",
+      subtitle: "Cien años de sabor en un frasco."
     }
   ];
 

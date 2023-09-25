@@ -23,8 +23,12 @@ import {ConfigService} from "./services/config.service";
 import {DividerModule} from "primeng/divider";
 import {DialogModule} from "primeng/dialog";
 import { SearchTagTableComponent } from './search-tag-table/search-tag-table.component';
-import {InputTextModule} from "primeng/inputtext";
-
+import { CardLotesWithErrorsComponent } from './cards/card-lotes-with-errors/card-lotes-with-errors.component';
+import {RippleModule} from "primeng/ripple";
+import {TooltipModule} from "primeng/tooltip";
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
+import {BadgeModule} from "primeng/badge";
 
 
 @NgModule({
@@ -41,6 +45,7 @@ import {InputTextModule} from "primeng/inputtext";
     CardLotesProcesadosByDatesComponent,
     CardErrorsInTagByDatesComponent,
     SearchTagTableComponent,
+    CardLotesWithErrorsComponent,
   ],
   imports: [
     CommonModule,
@@ -55,7 +60,11 @@ import {InputTextModule} from "primeng/inputtext";
     CalendarModule,
     FormsModule,
     DividerModule,
-    DialogModule
+    DialogModule,
+    RippleModule,
+    TooltipModule,
+    ToastModule,
+    BadgeModule,
   ],
   exports: [
     ChartComponent,
@@ -68,12 +77,14 @@ import {InputTextModule} from "primeng/inputtext";
     CardPesajesLineaTotalComponent,
     CardLotesProcesadosByDatesComponent,
     CardErrorsInTagByDatesComponent,
+    CardLotesWithErrorsComponent,
     SearchTagTableComponent
   ],
   providers: [
     EkinDbReviewApiRestService,
     ConfigService,
-    DatePipe
+    DatePipe,
+    MessageService
   ]
 })
 export class WidgetsModule { }
